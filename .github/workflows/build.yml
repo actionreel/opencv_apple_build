@@ -1,0 +1,23 @@
+name: Build
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+jobs:
+  build:
+    runs-on: macos-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: run build.sh
+        run: ./build.sh
+      - uses: ncipollo/release-action@v1
+        if: github.ref_type == 'tag'
+        with:
+          artifacts: "build/*.tar.gz"
