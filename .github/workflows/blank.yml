@@ -1,0 +1,10 @@
+name: Build
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: macOS
+    steps:
+      - uses: actions/checkout@v4
+      - name: run build.sh
+        run: ./build.sh
