@@ -11,6 +11,8 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive
       - name: run build.sh
         run: ./build.sh
       - uses: ncipollo/release-action@v1
